@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu Sayang ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Image with Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* GANTI 'foto-pacar.jpg' dengan nama file foto yang kamu upload */
+            /* Contoh: foto1.jpg, foto2.png, background.jpeg, dll */
+            background-image: url('foto-pacar.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px) brightness(0.7);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+            z-index: -1;
+        }
+
+        /* Login Screen Styles */
+        .login-screen {
+            max-width: 450px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-screen h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .login-screen p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #764ba2;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: none;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hearts {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .message {
+            line-height: 2;
+            color: #333;
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .music-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .music-player h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .music-info {
+            color: white;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .music-status {
+            color: white;
+            font-size: 1em;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .share-button {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .share-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: #20BA5A;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            font-size: 30px;
+            animation: float 6s infinite;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 100;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .date-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 20px auto;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container, .login-screen {
+                padding: 30px 25px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .message {
+                font-size: 1em;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div style="font-size: 80px; margin-bottom: 20px;">💕</div>
+        <h1>Halo Sayang 👋</h1>
+        <p>Ketik nama kamu untuk masuk...</p>
+        <input type="text" class="login-input" id="nameInput" placeholder="Masukkan nama kamu..." autocomplete="off">
+        <button class="login-button" onclick="handleLogin()">Masuk ❤️</button>
+        <p class="error-message" id="errorMessage">Nama tidak boleh kosong!</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <div class="hearts">💕</div>
+            
+            <h1>Halo Sayangggg.....</h1>
+            <div class="subtitle">Untuk Kamu yang Spesial ✨</div>
+            
+            <div class="center">
+                <div class="date-badge">🎉 2 BULAN BERSAMA 🎉</div>
+            </div>
+
+            <div class="message">
+                <p>Nd terasa nih so 2 bulan ini, <span class="highlight">makasih so buat kita pe hidup so bawarna sekali :)</span></p>
+                
+                <p>Makasih juga dah mau terimaku yang sangat cuek ini, walaupun ku tau pasti banyak sekali tantangan dan cobaan selama 2 bulan ini makasih udah mau bertahan.</p>
+                
+                <p>Ohiyaa untuk pekerjaannya jugaa <span class="highlight">semangatt yah</span> untuk memperjuangin cita-citanya, semoga terwujud jadi abdi negara, semoga bisa terus jdi kebanggaan orang tua dan aku tentunya wkwk.</p>
+                
+                <p>Maaf kalau banyakkkk sekaliii kesalahanku selama 2 bulan ini yang dimana nd selalu memperhatiin kmuu dan buat kmuu merasa sendiriann padahal ada pacarmuuu, kuharap kmu klo ada apa2 selaluu cerita ke akuuu. Walaupun ku jg nntinya responnya ngawur tpi itu biar kmu nd terlalu berpikir keras ke dirimu.</p>
+                
+                <p>Ohiyaa maafin aku juga yang selama ini mungkin kurangg atau nd sesuai dengan hatimu. Tpi cukup tauuu <span class="highlight">ku tetap saayangggg bgt sama kamu dari awal sampe akhir</span> ❤️</p>
+                
+                <p>Karena LDR yahhh <span class="highlight">semangatt yhh</span> walaupun ad cobaan lainnya nnti untuk bulan ke 3 wkwkwk</p>
+            </div>
+
+            <div class="music-player">
+                <h3>🎵 Lagu Spesial Untuk Kita 🎵</h3>
+                <div class="music-status" id="musicStatus">🎶 Musik sedang diputar... 🎶</div>
+                <div class="music-info">Alamak - Rizky Febian</div>
+            </div>
+
+            <button class="share-button" onclick="shareToWhatsApp()">
+                📱 Kirim ke WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Element untuk Musik -->
+    <audio id="backgroundMusic" loop>
+        <source src="alamak.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Create floating hearts
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-hearts';
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create hearts periodically
+        setInterval(createFloatingHeart, 1000);
+
+        // Initial hearts
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createFloatingHeart, i * 500);
+        }
+
+        // Handle Login
+        function handleLogin() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (name === '') {
+                errorMessage.style.display = 'block';
+                nameInput.style.borderColor = '#e74c3c';
+                return;
+            }
+            
+            // Hide login screen
+            document.getElementById('loginScreen').style.display = 'none';
+            
+            // Show main content
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // Play music
+            playBackgroundMusic();
+        }
+
+        // Play background music
+        function playBackgroundMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const musicStatus = document.getElementById('musicStatus');
+            audio.volume = 0.5; // Set volume 50%
+            
+            // Try to play
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Music playing automatically');
+                    musicStatus.innerHTML = '🎶 Musik sedang diputar... 🎶';
+                }).catch(error => {
+                    console.log('Autoplay prevented:', error);
+                    // If autoplay is blocked, show instruction
+                    musicStatus.innerHTML = '⚠️ Klik dimana saja untuk memutar musik 🎵';
+                    musicStatus.style.cursor = 'pointer';
+                    
+                    // Play on user interaction
+                    const playOnClick = function() {
+                        audio.play().then(() => {
+                            musicStatus.innerHTML = '🎶 Musik sedang diputar... 🎶';
+                            musicStatus.style.cursor = 'default';
+                        }).catch(err => {
+                            musicStatus.innerHTML = '❌ File musik tidak ditemukan (alamak.mp3)';
+                            console.error('Audio play error:', err);
+                        });
+                        document.body.removeEventListener('click', playOnClick);
+                    };
+                    
+                    document.body.addEventListener('click', playOnClick);
+                });
+            }
+        }
+
+        // Share to WhatsApp
+        function shareToWhatsApp() {
+            // Ganti nomor ini dengan nomor WhatsApp pacar kamu (format: 62812xxxxx tanpa tanda +)
+            const phoneNumber = '6285174102312'; // GANTI DENGAN NOMOR PACAR KAMU
+            
+            // Pesan yang akan dikirim
+            const message = `Halo sayang! 💕
+Aku ada surprise buat kamu nih...
+Ada pesan spesial untuk anniversary 2 bulan kita! 🎉
+
+Buka link ini ya: ${window.location.href}
+
+Love you! ❤️`;
+            
+            // Encode message untuk URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Buat WhatsApp URL
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Buka WhatsApp
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+    </script>
+</body>
+</html>
